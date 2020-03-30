@@ -1,0 +1,4 @@
+rootProject.name='C491L'
+include ':app'
+include ':OpenCV'
+include ':openCVLibrary341'
