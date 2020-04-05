@@ -20,6 +20,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.c490.Util;
@@ -42,7 +43,8 @@ public class imgProcActivity extends AppCompatActivity {
 
     private Bitmap img;
     private ImageView myImage;
-    private Button button;
+    private ImageButton Button;
+    private ImageButton gallery;
 
     public static final float map(float value, float istart, float istop, float ostart, float ostop) {
         return ostart + (ostop - ostart) * ((value - istart) / (istop - istart));
@@ -80,7 +82,8 @@ public class imgProcActivity extends AppCompatActivity {
 
         myImage = findViewById(R.id.myImage);
         myImage.setAlpha(1.0f);
-        button = findViewById(R.id.button);
+        Button = findViewById(R.id.button);
+        gallery = findViewById(R.id.camera_roll);
         ViewGroup.LayoutParams params = myImage.getLayoutParams();
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
@@ -116,10 +119,16 @@ public class imgProcActivity extends AppCompatActivity {
                 return false;
             }
         });
-        button.setOnClickListener(new View.OnClickListener() {
+        Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dispatchTakePictureIntent();
+            }
+        });
+        gallery.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+
             }
         });
     }

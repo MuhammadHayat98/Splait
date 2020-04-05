@@ -5,23 +5,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/rectangle3">
+    android:background="#222222">
 
     <TextureView
         android:id="@+id/texture_view"
-        android:layout_width="395dp"
-        android:layout_height="658dp" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottomAppBar"
+        style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
+        android:layout_width="411dp"
+        android:layout_height="73dp"
+        android:layout_gravity="bottom"
+        app:backgroundTint="#5E5E5E"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
 
     <ImageButton
-        android:id="@+id/take_pic"
-        android:layout_width="146dp"
-        android:layout_height="62dp"
-        android:layout_marginEnd="124dp"
-        android:layout_marginRight="124dp"
-        android:background="@drawable/rectangle3"
-        app:layout_constraintEnd_toEndOf="@+id/texture_view"
-        app:layout_constraintTop_toBottomOf="@+id/texture_view"
+        android:id="@+id/camera_snap"
+        android:layout_width="100dp"
+        android:layout_height="73dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/camera_img_btn" />
+
+    <ImageButton
+        android:id="@+id/camera_roll"
+        android:layout_width="100dp"
+        android:layout_height="56dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.948"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976"
+        app:srcCompat="@android:drawable/ic_menu_gallery" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
