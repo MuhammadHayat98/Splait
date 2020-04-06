@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottomAppBar2"
+        style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
+        android:layout_width="393dp"
+        android:layout_height="86dp"
+        android:layout_gravity="bottom"
+        android:backgroundTint="@color/cardview_dark_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="BottomAppBar" />
+
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="393dp"
+        android:layout_height="762dp"
+        app:layout_constraintBottom_toBottomOf="@+id/bottomAppBar2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/wall"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageButton
+        android:id="@+id/editColor"
+        android:layout_width="80dp"
+        android:layout_height="64dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/cardview_dark_background"
+        app:layout_constraintBottom_toBottomOf="@+id/bottomAppBar2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/bottomAppBar2"
+        app:srcCompat="@drawable/ic_format_paint_24px" />
+
+    <ImageButton
+        android:id="@+id/undo"
+        android:layout_width="74dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="700dp"
+        android:backgroundTint="@color/cardview_dark_background"
+        app:layout_constraintBottom_toBottomOf="@+id/editColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="@+id/bottomAppBar2"
+        app:layout_constraintTop_toTopOf="@+id/view"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/ic_undo_24px" />
+
+    <ImageButton
+        android:id="@+id/couch"
+        android:layout_width="84dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="708dp"
+        android:backgroundTint="@color/cardview_dark_background"
+        app:layout_constraintBottom_toBottomOf="@+id/editColor"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintHorizontal_bias="0.949"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintTop_toTopOf="@+id/view"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/ic_weekend_24px" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -46,6 +46,7 @@ public class imgProcActivity extends AppCompatActivity {
     private ImageView myImage;
     private ImageButton Button;
     private ImageButton gallery;
+    private Button redirect;
     private static final int PICK_IMAGE = 100;
     Uri imageURI;
     public static final float map(float value, float istart, float istop, float ostart, float ostop) {
@@ -86,6 +87,7 @@ public class imgProcActivity extends AppCompatActivity {
         myImage.setAlpha(1.0f);
         Button = findViewById(R.id.button);
         gallery = findViewById(R.id.camera_roll);
+        redirect = findViewById(R.id.button2);
         ViewGroup.LayoutParams params = myImage.getLayoutParams();
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
@@ -121,6 +123,7 @@ public class imgProcActivity extends AppCompatActivity {
                 return false;
             }
         });
+
         Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,6 +136,17 @@ public class imgProcActivity extends AppCompatActivity {
                 openGallery();
             }
         });
+        redirect.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                paint();
+            }
+        });
+
+    }
+    private void paint(){
+        Intent red = new Intent(this, EditActivity.class);
+        startActivity(red);
     }
 
     private static final int REQUEST_TAKE_PHOTO = 1;
