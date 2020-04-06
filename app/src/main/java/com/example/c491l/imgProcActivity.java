@@ -30,6 +30,7 @@ import org.opencv.android.OpenCVLoader;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.OptionalDataException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -45,7 +46,8 @@ public class imgProcActivity extends AppCompatActivity {
     private ImageView myImage;
     private ImageButton Button;
     private ImageButton gallery;
-
+    private static final int PICK_IMAGE = 100;
+    Uri imageURI;
     public static final float map(float value, float istart, float istop, float ostart, float ostop) {
         return ostart + (ostop - ostart) * ((value - istart) / (istop - istart));
     }
@@ -128,13 +130,25 @@ public class imgProcActivity extends AppCompatActivity {
         gallery.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-
+                openGallery();
             }
         });
     }
 
     private static final int REQUEST_TAKE_PHOTO = 1;
-
+    private void openGallery(){
+        Intent gallery = new Intent (Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+        startActivityForResult(gallery, PICK_IMAGE);
+    }
+//    @override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+//        super.onActivityResult(requestCode,resultCode,data);
+//        if(resultCode== RESULT_OK && requestCode==PICK_IMAGE){
+//            imageURI = data.getData();
+//            gallery.setImageURI(imageURI);
+//        }
+//
+//    }
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent
@@ -181,6 +195,19 @@ public class imgProcActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
         System.out.println(requestCode + " xxxxxxx " + resultCode);
+        if(resultCode== RESULT_OK && requestCode==PICK_IMAGE){
+            imageURI = intent.getData();
+            myImage.setImageURI(imageURI);
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            if (photoFile != null) {
+                Uri photoURI = uriFromFile(photoFile);
+            }
+        }
         try {
             switch (requestCode) {
                 case REQUEST_TAKE_PHOTO: {

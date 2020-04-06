@@ -19,6 +19,7 @@
 <!--        app:layout_constraintStart_toStartOf="parent"-->
 <!--        app:layout_constraintTop_toTopOf="parent"-->
 <!--        app:layout_constraintVertical_bias="0.623" />-->
+
     <ImageButton
         android:id="@+id/buttonLogin"
         android:layout_width="wrap_content"
@@ -27,51 +28,50 @@
         android:src="@drawable/login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.623"></ImageButton>
+        app:layout_constraintVertical_bias="0.68"></ImageButton>
 
     <EditText
         android:id="@+id/editText4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Username"
-        android:gravity="center"
         android:background="@drawable/user_rectangle"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Username"
+        android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.435" />
+        app:layout_constraintVertical_bias="0.466" />
 
     <EditText
         android:id="@+id/editText5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:hint="Password"
-        android:gravity="center"
         android:background="@drawable/pass_rectangle"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Password"
+        android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.534" />
+        app:layout_constraintVertical_bias="0.568" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="132dp"
-        android:layout_height="162dp"
+        android:layout_width="116dp"
+        android:layout_height="147dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.524"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.224"
+        app:layout_constraintVertical_bias="0.255"
         app:srcCompat="@drawable/house_icon" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

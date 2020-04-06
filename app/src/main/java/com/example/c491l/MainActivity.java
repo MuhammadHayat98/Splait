@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openCameraView() {
-        Intent intent = new Intent(this, imgProcActivity.class);
+        Intent intent = new Intent(this, splash.class);
         startActivity(intent);
     }
 
