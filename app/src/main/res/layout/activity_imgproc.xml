@@ -65,4 +65,12 @@
         android:backgroundTint="@color/cardview_dark_background"
         app:srcCompat="@android:drawable/ic_menu_gallery" />
 
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="25dp"
+        android:layout_height="27dp"
+        android:text="Button"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="659dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
