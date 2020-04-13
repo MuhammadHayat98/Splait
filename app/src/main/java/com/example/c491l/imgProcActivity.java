@@ -49,6 +49,7 @@ public class imgProcActivity extends AppCompatActivity {
     private Button redirect;
     private static final int PICK_IMAGE = 100;
     Uri imageURI;
+
     public static final float map(float value, float istart, float istop, float ostart, float ostop) {
         return ostart + (ostop - ostart) * ((value - istart) / (istop - istart));
     }
@@ -92,7 +93,8 @@ public class imgProcActivity extends AppCompatActivity {
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         params.width = dm.widthPixels * 5 / 6;
-        params.height = (dm.heightPixels + getNavigationBarHeight()) * 5 / 6;;
+        params.height = (dm.heightPixels + getNavigationBarHeight()) * 5 / 6;
+        ;
         myImage.setLayoutParams(params);
         myImage.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -103,8 +105,8 @@ public class imgProcActivity extends AppCompatActivity {
                 int ox = (int) event.getX();
                 int oy = (int) event.getY();
                 System.out.println("TAP { o " + ox + ", " + oy + " }");
-                int x = (int) map(ox, 0, 900, 0,img.getWidth());
-                int y = (int) map(oy, 230, 1600, 0,img.getHeight());
+                int x = (int) map(ox, 0, 900, 0, img.getWidth());
+                int y = (int) map(oy, 230, 1600, 0, img.getHeight());
                 if (x < 0) {
                     return false;
                 }
@@ -118,7 +120,7 @@ public class imgProcActivity extends AppCompatActivity {
                     return false;
                 }
                 System.out.println("TAP { " + x + ", " + y + " }");
-                Bitmap out = quantcomp.run_iproc(img, x, y, 0x00ff00);
+                Bitmap out = quantcomp.run_iproc(img, x, y, EditActivity.getSelectedColor());
                 myImage.setImageBitmap(out);
                 return false;
             }
@@ -130,39 +132,35 @@ public class imgProcActivity extends AppCompatActivity {
                 dispatchTakePictureIntent();
             }
         });
-        gallery.setOnClickListener(new View.OnClickListener(){
+        gallery.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 openGallery();
             }
         });
-        redirect.setOnClickListener(new View.OnClickListener(){
+        redirect.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 paint();
             }
         });
-
     }
-    private void paint(){
+
+    private void paint() {
         Intent red = new Intent(this, EditActivity.class);
         startActivity(red);
     }
 
     private static final int REQUEST_TAKE_PHOTO = 1;
-    private void openGallery(){
-        Intent gallery = new Intent (Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
-        startActivityForResult(gallery, PICK_IMAGE);
+
+    private void openGallery() {
+        System.out.println("Open gallery request");
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
     }
-//    @override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data){
-//        super.onActivityResult(requestCode,resultCode,data);
-//        if(resultCode== RESULT_OK && requestCode==PICK_IMAGE){
-//            imageURI = data.getData();
-//            gallery.setImageURI(imageURI);
-//        }
-//
-//    }
+
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent
@@ -172,7 +170,7 @@ public class imgProcActivity extends AppCompatActivity {
             try {
                 photoFile = createImageFile();
             } catch (IOException ex) {
-                 ex.printStackTrace();
+                ex.printStackTrace();
             }
             // Continue only if the File was successfully created
             if (photoFile != null) {
@@ -209,27 +207,14 @@ public class imgProcActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
         System.out.println(requestCode + " xxxxxxx " + resultCode);
-        if(resultCode== RESULT_OK && requestCode==PICK_IMAGE){
-            imageURI = intent.getData();
-            myImage.setImageURI(imageURI);
-            File photoFile = null;
-            try {
-                photoFile = createImageFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            if (photoFile != null) {
-                Uri photoURI = uriFromFile(photoFile);
-            }
-        }
         try {
             switch (requestCode) {
                 case REQUEST_TAKE_PHOTO: {
                     if (resultCode == RESULT_OK) {
                         File file = new File(mCurrentPhotoPath);
-                        Bitmap o = MediaStore.Images.Media
-                                .getBitmap(this.getContentResolver(), Uri.fromFile(file));
+                        Bitmap o = MediaStore.Images.Media.getBitmap(this.getContentResolver(), Uri.fromFile(file));
                         if (o != null) {
+                            System.out.println("took photo at [" + mCurrentPhotoPath + "]");
                             Bitmap b = o.copy(o.getConfig(), true);
                             img = Util.scaleBI(b, 512, 768);
                             myImage.setImageBitmap(img);
@@ -237,6 +222,18 @@ public class imgProcActivity extends AppCompatActivity {
                     }
                     break;
                 }
+                case PICK_IMAGE:
+                    if (resultCode == RESULT_OK) {
+                        imageURI = intent.getData();
+                        Bitmap o = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageURI);
+                        if (o != null) {
+                            System.out.println("picked photo at [" + imageURI.getPath() + "]");
+                            Bitmap b = o.copy(o.getConfig(), true);
+                            img = Util.scaleBI(b, 512, 768);
+                            myImage.setImageBitmap(img);
+                        }
+                    }
+                    break;
             }
         } catch (Exception error) {
             error.printStackTrace();

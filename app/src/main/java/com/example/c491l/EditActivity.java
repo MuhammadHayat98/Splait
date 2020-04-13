@@ -15,7 +15,7 @@ import yuku.ambilwarna.AmbilWarnaDialog;
 
 public class EditActivity extends AppCompatActivity {
     private ImageButton editBtn;
-    private int mDefaultColor;
+    private static int mDefaultColor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,4 +48,7 @@ public class EditActivity extends AppCompatActivity {
         colorPicker.show();
     }
 
+    public static int getSelectedColor() {
+        return mDefaultColor;
+    }
 }
