@@ -102,13 +102,13 @@ public class imgProcActivity extends AppCompatActivity {
         Button = findViewById(R.id.button);
         gallery = findViewById(R.id.camera_roll);
         editBtn = findViewById(R.id.editColor);
-//        ViewGroup.LayoutParams params = myImage.getLayoutParams();
-//        DisplayMetrics dm = new DisplayMetrics();
-//        getWindowManager().getDefaultDisplay().getMetrics(dm);
-//        params.width = dm.widthPixels * 5 / 6;
-//        params.height = (dm.heightPixels + getNavigationBarHeight()) * 5 / 6;
-//        ;
-//        myImage.setLayoutParams(params);
+        ViewGroup.LayoutParams params = myImage.getLayoutParams();
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        params.width = dm.widthPixels * 5 / 6;
+        params.height = (dm.heightPixels + getNavigationBarHeight()) * 5 / 6;
+
+        myImage.setLayoutParams(params);
         myImage.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {

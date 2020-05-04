@@ -113,6 +113,11 @@ public final class quantcomp {
         return res;
     }
 
+    static int[] orig_edges = new int[512 * 768];
+    static int[] orig_color = new int[512 * 768];
+    static Bitmap color, edges;
+    static Bitmap lastImg = null;
+    static FillTool ff;
     public static Bitmap run_iproc(Bitmap stream, int x, int y, int hexColor) {
         System.out.println("Running... " + stream.getWidth() + "x" + stream.getHeight());
         long start = System.nanoTime();
@@ -123,16 +128,19 @@ public final class quantcomp {
         rml = Util.scaleBI(rml, 512, 768);
         cleanedup = rml;
         //  cleanedup = Util.cleanupedges(rml);
+        if (stream != lastImg) {
+            // new image
+            color = Util.scaleBI(stream, 512, 768);
+            edges = Util.scaleBI(cleanedup, 512, 768);
 
-		Bitmap color = Util.scaleBI(stream, 512, 768);
-		Bitmap edges = Util.scaleBI(cleanedup, 512, 768);
-		int[] orig_edges = new int[512 * 768];
-		int[] orig_color = new int[512 * 768];
-        System.arraycopy(Util.getPixels(edges), 0, orig_edges, 0, orig_edges.length);
-        System.arraycopy(Util.getPixels(color), 0, orig_color, 0, orig_color.length);
-		FillTool ff = new FillTool(edges, color, 0, 0);
-        //System.arraycopy(orig_edges, 0, Util.getPixels(this.edges), 0, orig_edges.length);
-        //System.arraycopy(orig_color, 0, Util.getPixels(this.color), 0, orig_color.length);
+            System.arraycopy(Util.getPixels(edges), 0, orig_edges, 0, orig_edges.length);
+            System.arraycopy(Util.getPixels(color), 0, orig_color, 0, orig_color.length);
+            ff = new FillTool(edges, color, 0, 0);
+            lastImg = stream;
+        }
+
+        Util.setPixels(edges, orig_edges);
+        Util.setPixels(color, orig_color);
 
         ff.fillAt(x, y, hexColor);
         start = System.nanoTime() - start;
@@ -142,5 +150,6 @@ public final class quantcomp {
         retb.setHasAlpha(false);
         return retb;
     }
+
 
 }
