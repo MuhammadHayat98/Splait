@@ -8,24 +8,21 @@
     tools:context=".MainActivity">
 
     <!--    <Button-->
-<!--        android:id="@+id/button"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginBottom="16dp"-->
-<!--        android:text="Take Picture"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent" />-->
+    <!--        android:id="@+id/button"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginBottom="16dp"-->
+    <!--        android:text="Take Picture"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent" />-->
+
     <ImageView
         android:id="@+id/myImage"
-        android:layout_width="406dp"
-        android:layout_height="740dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.538"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        android:layout_width="415dp"
+        android:layout_height="655dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="3dp" />
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppBar"
@@ -33,44 +30,49 @@
         android:layout_width="411dp"
         android:layout_height="73dp"
         android:layout_gravity="bottom"
-        app:layout_constraintBottom_toBottomOf="parent"
-        
         android:backgroundTint="@color/cardview_dark_background"
+
+        app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="0dp" />
 
     <ImageButton
         android:id="@+id/button"
         android:layout_width="100dp"
         android:layout_height="73dp"
+        android:background="@drawable/rectangle3"
+        android:backgroundTint="@color/cardview_dark_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="@drawable/rectangle3"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        android:backgroundTint="@color/cardview_dark_background"
         app:srcCompat="@drawable/camera_img_btn" />
 
     <ImageButton
         android:id="@+id/camera_roll"
         android:layout_width="100dp"
         android:layout_height="56dp"
+        android:backgroundTint="@color/cardview_dark_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.948"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.976"
-        android:backgroundTint="@color/cardview_dark_background"
         app:srcCompat="@android:drawable/ic_menu_gallery" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="25dp"
-        android:layout_height="27dp"
-        android:text="Button"
-        tools:layout_editor_absoluteX="3dp"
-        tools:layout_editor_absoluteY="659dp" />
+    <ImageButton
+        android:id="@+id/editColor"
+        android:layout_width="78dp"
+        android:layout_height="45dp"
+        android:backgroundTint="@color/cardview_dark_background"
+        app:layout_constraintBottom_toBottomOf="@+id/bottomAppBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.082"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976"
+        app:srcCompat="@drawable/ic_format_paint_24px" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

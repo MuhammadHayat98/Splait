@@ -33,6 +33,18 @@ import java.io.IOException;
 import java.io.OptionalDataException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
+
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
+import com.jaredrummler.android.colorpicker.ColorPickerDialog;
+
+import yuku.ambilwarna.AmbilWarnaDialog;
 
 public class imgProcActivity extends AppCompatActivity {
 
@@ -44,9 +56,10 @@ public class imgProcActivity extends AppCompatActivity {
 
     private Bitmap img;
     private ImageView myImage;
+    private static int mDefaultColor;
     private ImageButton Button;
     private ImageButton gallery;
-    private Button redirect;
+    private ImageButton editBtn;
     private static final int PICK_IMAGE = 100;
     Uri imageURI;
 
@@ -88,14 +101,14 @@ public class imgProcActivity extends AppCompatActivity {
         myImage.setAlpha(1.0f);
         Button = findViewById(R.id.button);
         gallery = findViewById(R.id.camera_roll);
-        redirect = findViewById(R.id.button2);
-        ViewGroup.LayoutParams params = myImage.getLayoutParams();
-        DisplayMetrics dm = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
-        params.width = dm.widthPixels * 5 / 6;
-        params.height = (dm.heightPixels + getNavigationBarHeight()) * 5 / 6;
-        ;
-        myImage.setLayoutParams(params);
+        editBtn = findViewById(R.id.editColor);
+//        ViewGroup.LayoutParams params = myImage.getLayoutParams();
+//        DisplayMetrics dm = new DisplayMetrics();
+//        getWindowManager().getDefaultDisplay().getMetrics(dm);
+//        params.width = dm.widthPixels * 5 / 6;
+//        params.height = (dm.heightPixels + getNavigationBarHeight()) * 5 / 6;
+//        ;
+//        myImage.setLayoutParams(params);
         myImage.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -120,7 +133,8 @@ public class imgProcActivity extends AppCompatActivity {
                     return false;
                 }
                 System.out.println("TAP { " + x + ", " + y + " }");
-                Bitmap out = quantcomp.run_iproc(img, x, y, EditActivity.getSelectedColor());
+                //Pass color here
+                Bitmap out = quantcomp.run_iproc(img, x, y, mDefaultColor);
                 myImage.setImageBitmap(out);
                 return false;
             }
@@ -138,17 +152,30 @@ public class imgProcActivity extends AppCompatActivity {
                 openGallery();
             }
         });
-        redirect.setOnClickListener(new View.OnClickListener() {
+        editBtn.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v) {
-                paint();
+            public void onClick(View v){
+                openColorPicker();
             }
         });
     }
 
-    private void paint() {
-        Intent red = new Intent(this, EditActivity.class);
-        startActivity(red);
+    public void openColorPicker() {
+        AmbilWarnaDialog colorPicker = new AmbilWarnaDialog(this, mDefaultColor, true, new AmbilWarnaDialog.OnAmbilWarnaListener() {
+            @Override
+            public void onCancel(AmbilWarnaDialog dialog) {
+
+            }
+
+            @Override
+            public void onOk(AmbilWarnaDialog dialog, int color) {
+                mDefaultColor = color;
+
+                System.out.println("dis is the color value: " + mDefaultColor);
+
+            }
+        });
+        colorPicker.show();
     }
 
     private static final int REQUEST_TAKE_PHOTO = 1;
