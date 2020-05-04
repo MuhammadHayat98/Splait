@@ -8,7 +8,7 @@ public class BorderDetection {
 	public static class Tuple {
 		public int x;
 		public int y;
-
+	// testo
 		Tuple(int y, int x) {
 			this.x = x;
 			this.y = y;
