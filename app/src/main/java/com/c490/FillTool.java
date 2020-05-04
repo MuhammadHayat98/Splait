@@ -10,13 +10,14 @@ public class FillTool {
 	private int minY;
 	private int maxY;
 
-	private int oldColor;
+	private int colorToReplace;
 	private int tolerance;
 	private int width;
 	private int height;
 	int[] srcrgb;
-	int[] dstrgb;
-	Bitmap dst;
+	private int[] dstrgb;
+	int[] absorig;
+	private Bitmap dst;
 	private int outcolor = 0xff00ff;
 
 	private int appmode = 0;
@@ -45,11 +46,19 @@ public class FillTool {
 		this.appmode = mode;
 	}
 
+	public void resetSource(int[] src) {
+		System.arraycopy(src, 0, srcrgb, 0, src.length);
+	}
+
+	public void resetDest(int[] dst) {
+		System.arraycopy(dst, 0, dstrgb, 0, dst.length);
+	}
+
 	public boolean fillAt(int x, int y, int color) {
 		int c = color;
 		//Color.RGBToHSV((c >> 16) & 0xff, (c >> 8) & 0xff, c & 0xff, dsthsb);
 		outcolor = c;
-		this.oldColor = srcrgb[x + y * width];
+		this.colorToReplace = srcrgb[x + y * width];
 		boolean res = fill(this.width, this.height, x, y);
 		Util.setPixels(dst, dstrgb);
 		return res;
@@ -58,7 +67,7 @@ public class FillTool {
 	public void apply(int x, int y) {
 		int i = x + y * width;
 		if (appmode == 0) {
-			int c = dstrgb[i];
+			int c = absorig[i];
 			int l = lum(c);
 			int r = l * (outcolor >> 16 & 0xff) >> 8;
 			int g = l * (outcolor >> 8 & 0xff) >> 8;
@@ -76,9 +85,9 @@ public class FillTool {
 	public boolean shouldFill(int x, int y) {
 		int i = x + y * width;
 		if (this.tolerance == 0) {
-			return this.srcrgb[i] == this.oldColor;
+			return this.srcrgb[i] == this.colorToReplace;
 		}
-		return nearColors(this.srcrgb[i], this.oldColor, this.tolerance);
+		return nearColors(this.srcrgb[i], this.colorToReplace, this.tolerance);
 	}
 
 	public boolean fill(int w, int h, int x, int y) {

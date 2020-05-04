@@ -118,6 +118,13 @@ public final class quantcomp {
     static Bitmap color, edges;
     static Bitmap lastImg = null;
     static FillTool ff;
+    private static class DATA {
+        int x, y, color;
+        DATA(int x, int y, int color) {
+            this.x = x; this.y = y; this.color = color;
+        }
+    };
+    static List<DATA> points = new ArrayList<DATA>();
     public static Bitmap run_iproc(Bitmap stream, int x, int y, int hexColor) {
         System.out.println("Running... " + stream.getWidth() + "x" + stream.getHeight());
         long start = System.nanoTime();
@@ -129,6 +136,8 @@ public final class quantcomp {
         cleanedup = rml;
         //  cleanedup = Util.cleanupedges(rml);
         if (stream != lastImg) {
+            points.clear();
+            System.out.println("New image");
             // new image
             color = Util.scaleBI(stream, 512, 768);
             edges = Util.scaleBI(cleanedup, 512, 768);
@@ -141,13 +150,19 @@ public final class quantcomp {
 
         Util.setPixels(edges, orig_edges);
         Util.setPixels(color, orig_color);
-
-        ff.fillAt(x, y, hexColor);
+        ff.resetDest(orig_color);
+        ff.absorig = orig_color;
+        points.add(new DATA(x, y, hexColor));
+        for (DATA d : points) {
+            ff.resetSource(orig_edges);
+            ff.fillAt(d.x, d.y, d.color);
+        }
         start = System.nanoTime() - start;
         System.out.println("Took: " + (start * 0.000001) + "ms");
 
         Bitmap retb = color;
         retb.setHasAlpha(false);
+        //Util.setPixels(retb, ff.srcrgb);
         return retb;
     }
 
