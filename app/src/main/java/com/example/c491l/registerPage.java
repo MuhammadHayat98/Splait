@@ -30,12 +30,12 @@ public class registerPage extends AppCompatActivity {
         Login.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                openCameraView();
+                backToLogin();
             }
         });
     }
-    public void openCameraView() {
-        Intent intent = new Intent(this, splash.class);
+    public void backToLogin() {
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 }
