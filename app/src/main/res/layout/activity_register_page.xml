@@ -1,58 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".registerPage"
     android:background="@drawable/rectangle3">
 
-<!--    <Button-->
-<!--        android:id="@+id/buttonLogin"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:background="@drawable/login_button"-->
-<!--        android:text="Login"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.511"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="0.623" />-->
 
     <ImageButton
-        android:id="@+id/buttonLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/buttonLogin2"
+        android:layout_width="109dp"
+        android:layout_height="46dp"
         android:background="@drawable/login_button"
         android:src="@drawable/login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.68"></ImageButton>
-
-    <ImageButton
-        android:id="@+id/signup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/login_button"
-        android:src="@drawable/sign_up"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.517"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.79" />
+        app:layout_constraintVertical_bias="0.891"/>
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/emailR"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/user_rectangle"
         android:ems="10"
         android:gravity="center"
-        android:hint="Username"
+        android:hint="Email"
         android:textColorHint="#FFFFFF"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -62,20 +37,52 @@
         app:layout_constraintVertical_bias="0.466" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/UserR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/pass_rectangle"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Username"
+        android:textColorHint="#FFFFFF"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.561" />
+
+    <EditText
+        android:id="@+id/PassR"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/pass_rectangle"
         android:ems="10"
         android:gravity="center"
         android:hint="Password"
-        android:inputType="textPassword"
         android:textColorHint="#FFFFFF"
+        android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.568" />
+        app:layout_constraintVertical_bias="0.662" />
+
+    <EditText
+        android:id="@+id/reEnter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/pass_rectangle"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Re-enter Password"
+        android:textColorHint="#FFFFFF"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.764" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -87,6 +94,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.255"
-        app:srcCompat="@drawable/house_icon" />
+        app:srcCompat="@drawable/house_icon"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
