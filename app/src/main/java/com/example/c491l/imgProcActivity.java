@@ -42,7 +42,7 @@ import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import com.jaredrummler.android.colorpicker.ColorPickerDialog;
+//import com.jaredrummler.android.colorpicker.ColorPickerDialog;
 
 import yuku.ambilwarna.AmbilWarnaDialog;
 
